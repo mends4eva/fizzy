@@ -21,7 +21,7 @@ const Product3DCard = memo(function Product3DCard({
 
   return (
     <Link href={`/products/${product.id}`}>
-      <div className="group relative h-[500px] sm:h-[550px] lg:h-[600px] cursor-pointer overflow-hidden rounded-xl bg-gradient-to-b from-sky-100 to-sky-50 shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+      <div className="group relative h-[700px] md:h-[800px] lg:h-[900px] xl:h-[1000px] cursor-pointer overflow-hidden rounded-xl bg-gradient-to-b from-sky-100 to-sky-50 shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
         {/* 3D Canvas */}
         <Canvas
           className="absolute inset-0 h-full w-full pointer-events-auto"
@@ -57,15 +57,15 @@ const Product3DCard = memo(function Product3DCard({
         </Canvas>
 
         {/* Product Info Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6 pointer-events-none">
-          <h3 className="text-3xl font-black text-white">{product.name}</h3>
-          <p className="text-base text-gray-100 mt-2 line-clamp-2">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-8 pointer-events-none">
+          <h3 className="text-4xl lg:text-5xl font-black text-white">{product.name}</h3>
+          <p className="text-lg lg:text-xl text-gray-100 mt-3 line-clamp-2">
             {product.description}
           </p>
-          <div className="mt-3 text-lg text-orange-300 font-bold">
+          <div className="mt-4 text-2xl lg:text-3xl text-orange-300 font-bold">
             From ${product.pricing.retail}
           </div>
-          <div className="mt-3 text-sm text-gray-300 font-semibold">
+          <div className="mt-4 text-base lg:text-lg text-gray-300 font-semibold">
             Click to view details & wholesale pricing →
           </div>
         </div>
