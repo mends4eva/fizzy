@@ -39,34 +39,36 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* 3D Product Display */}
         <div className="flex flex-col">
-          <div className="relative h-96 lg:h-full min-h-96 rounded-lg bg-gradient-to-b from-sky-100 to-sky-50 shadow-lg overflow-hidden">
+          <div className="relative h-[550px] lg:h-[700px] rounded-xl bg-gradient-to-b from-sky-100 to-sky-50 shadow-lg overflow-hidden">
             <Canvas
-              className="absolute inset-0 h-full w-full"
-              camera={{ position: [0, 0, 15], fov: 50 }}
+              className="absolute inset-0 h-full w-full pointer-events-auto"
+              camera={{ position: [0, 0, 22], fov: 40 }}
+              dpr={[1, 2]}
+              performance={{ min: 0.5 }}
             >
               <PerspectiveCamera
                 makeDefault
-                position={[0, 0, 15]}
-                fov={50}
+                position={[0, 0, 22]}
+                fov={40}
               />
-              <ambientLight intensity={0.8} />
+              <ambientLight intensity={1.1} />
               <directionalLight
-                position={[10, 10, 10]}
-                intensity={0.8}
+                position={[15, 15, 15]}
+                intensity={1}
                 castShadow
               />
               <directionalLight
-                position={[-10, -10, 5]}
-                intensity={0.3}
+                position={[-15, -15, 8]}
+                intensity={0.5}
               />
               
               <group ref={containerRef}>
                 <FloatingCan
                   flavor={product.flavor}
-                  floatSpeed={1.5}
-                  rotationIntensity={0.6}
-                  floatIntensity={0.8}
-                  floatingRange={[-0.5, 0.5]}
+                  floatSpeed={2}
+                  rotationIntensity={1.5}
+                  floatIntensity={1.2}
+                  floatingRange={[-0.6, 0.6]}
                 />
               </group>
             </Canvas>
