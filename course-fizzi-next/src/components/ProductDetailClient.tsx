@@ -35,70 +35,70 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         {/* 3D Product Display */}
-        <div className="flex flex-col">
-          <div className="relative h-[550px] lg:h-[700px] rounded-xl bg-gradient-to-b from-sky-100 to-sky-50 shadow-lg overflow-hidden">
+        <div className="flex flex-col order-2 lg:order-1">
+          <div className="relative h-80 sm:h-96 md:h-[500px] lg:h-[600px] rounded-xl bg-gradient-to-b from-sky-100 to-sky-50 shadow-lg overflow-hidden w-full">
             <Canvas
               className="absolute inset-0 h-full w-full pointer-events-auto"
-              camera={{ position: [0, 0, 22], fov: 40 }}
+              camera={{ position: [0, 0, 12], fov: 35 }}
               dpr={[1, 2]}
               performance={{ min: 0.5 }}
             >
               <PerspectiveCamera
                 makeDefault
-                position={[0, 0, 22]}
-                fov={40}
+                position={[0, 0, 12]}
+                fov={35}
               />
-              <ambientLight intensity={1.1} />
+              <ambientLight intensity={1.3} />
               <directionalLight
                 position={[15, 15, 15]}
-                intensity={1}
+                intensity={1.2}
                 castShadow
               />
               <directionalLight
                 position={[-15, -15, 8]}
-                intensity={0.5}
+                intensity={0.6}
               />
               
-              <group ref={containerRef}>
+              <group ref={containerRef} scale={2.5}>
                 <FloatingCan
                   flavor={product.flavor}
                   floatSpeed={2}
-                  rotationIntensity={1.5}
-                  floatIntensity={1.2}
+                  rotationIntensity={1.8}
+                  floatIntensity={1.3}
                   floatingRange={[-0.6, 0.6]}
                 />
               </group>
             </Canvas>
           </div>
-          <p className="text-sm text-gray-500 mt-4 text-center">
+          <p className="text-xs sm:text-sm text-gray-500 mt-3 text-center">
             Interactive 3D model - scroll to zoom, drag to rotate
           </p>
         </div>
 
         {/* Product Information & Ordering */}
-        <div className="flex flex-col justify-start">
-          <h1 className="text-4xl font-black text-sky-950 mb-2">
+        <div className="flex flex-col justify-start order-1 lg:order-2">
+          <h1 className="text-3xl sm:text-4xl font-black text-sky-950 mb-2">
             {product.name}
           </h1>
-          <p className="text-lg text-sky-800 mb-6">
+          <p className="text-base sm:text-lg text-sky-800 mb-6">
             {product.description}
           </p>
 
           {/* Characteristics */}
           <div className="mb-8">
-            <h3 className="text-xl font-bold text-sky-950 mb-4">
+            <h3 className="text-lg sm:text-xl font-bold text-sky-950 mb-4">
               Product Characteristics
             </h3>
             <ul className="space-y-2">
               {product.characteristics.map((char, idx) => (
                 <li
                   key={idx}
-                  className="flex items-center text-sky-800"
+                  className="flex items-center text-sm sm:text-base text-sky-800"
                 >
-                  <span className="inline-block w-2 h-2 bg-orange-500 rounded-full mr-3" />
+                  <span className="inline-block w-2 h-2 bg-orange-500 rounded-full mr-3 flex-shrink-0" />
                   {char}
                 </li>
               ))}
@@ -106,8 +106,8 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
           </div>
 
           {/* Pricing & Order Section */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h3 className="text-2xl font-bold text-sky-950 mb-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-8">
+            <h3 className="text-xl sm:text-2xl font-bold text-sky-950 mb-6">
               Order & Pricing
             </h3>
 
@@ -122,7 +122,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 max="1000"
                 value={quantity}
                 onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                className="w-full px-4 py-2 border-2 border-sky-200 rounded-lg focus:outline-none focus:border-orange-500 text-lg"
+                className="w-full px-4 py-3 border-2 border-sky-200 rounded-lg focus:outline-none focus:border-orange-500 text-base"
               />
               <p className="text-xs text-gray-500 mt-2">
                 Minimum 10 units for wholesale pricing
@@ -134,10 +134,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               <label className="block text-sm font-semibold text-sky-900 mb-2">
                 Order Type
               </label>
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4">
                 <button
                   onClick={() => setOrderType("retail")}
-                  className={`flex-1 py-2 px-4 rounded-lg font-semibold transition-colors ${
+                  className={`flex-1 py-2 px-3 sm:px-4 rounded-lg font-semibold text-sm sm:text-base transition-colors ${
                     orderType === "retail"
                       ? "bg-orange-500 text-white"
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -147,7 +147,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 </button>
                 <button
                   onClick={() => setOrderType("wholesale")}
-                  className={`flex-1 py-2 px-4 rounded-lg font-semibold transition-colors ${
+                  className={`flex-1 py-2 px-3 sm:px-4 rounded-lg font-semibold text-sm sm:text-base transition-colors ${
                     orderType === "wholesale"
                       ? "bg-orange-500 text-white"
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"

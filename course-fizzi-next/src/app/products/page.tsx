@@ -15,11 +15,12 @@ export default function ProductsPage() {
       {/* Header */}
       <header className="border-b border-sky-200 bg-white/50 backdrop-blur-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="inline-block">
-            <FizziLogo className="h-12 text-sky-800 hover:opacity-80 transition-opacity" />
+          <Link href="/" className="inline-block flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <FizziLogo className="h-10 text-sky-800" />
+            <span className="text-sm font-semibold text-sky-800">Back Home</span>
           </Link>
           <h1 className="text-2xl font-bold text-sky-900">Our Products</h1>
-          <div className="w-12" /> {/* Spacer for balance */}
+          <div className="w-32" /> {/* Spacer for balance */}
         </div>
       </header>
 
@@ -36,7 +37,7 @@ export default function ProductsPage() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {products.map((product, index) => (
             <Product3DCard
               key={product.id}
